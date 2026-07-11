@@ -1,0 +1,90 @@
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import './Navbar.css'
+
+function Navbar({ cart }) {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const token = localStorage.getItem('token')
+  const isLoggedIn = !!token
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate('/')
+  }
+
+  return (
+    <nav className="navbar">
+      <div className="navbar-left">
+         <div className="navbar-logo">
+      <Link to="/">Brew & Co</Link>
+  </div>
+  <div className="navbar-cart">
+    <Link to="/cart">
+      🛒 {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
+    </Link>
+  </div>
+</div>
+
+      <ul className="navbar-links">
+        <li>
+          <Link
+            to="/"
+            className={location.pathname === '/' ? 'active' : ''}
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/menu"
+            className={location.pathname === '/menu' ? 'active' : ''}
+          >
+            Menu
+          </Link>
+        </li>
+        {isLoggedIn ? (
+          <>
+            <li>
+              <Link
+                to="/orders"
+                className={location.pathname === '/orders' ? 'active' : ''}
+              >
+                My Orders
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={handleLogout}
+                className="logout-btn"
+              >
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link
+                to="/login"
+                className={location.pathname === '/login' ? 'active' : ''}
+              >
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/signup"
+                className={location.pathname === '/signup' ? 'active' : ''}
+              >
+                Sign Up
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
+  )
+}
+
+export default Navbar

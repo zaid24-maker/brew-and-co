@@ -1,0 +1,132 @@
+.orders-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.orders-header {
+    margin-bottom: 2rem;
+}
+
+.orders-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.orders-header p {
+    color: var(--color-text-muted);
+}
+
+/* States */
+.orders-loading,
+.orders-error,
+.orders-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-text-muted);
+}
+
+.orders-empty span {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.orders-empty h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.orders-error {
+    color: #ff6b6b;
+}
+
+/* Order list */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.order-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.order-id {
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.order-date {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* Status badge */
+.order-status {
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.order-status--pending {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+.order-status--completed {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.4);
+}
+
+.order-status--cancelled {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(220, 53, 69, 0.4);
+}
+
+/* Items inside an order */
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.order-item-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.order-total {
+    font-size: 1rem;
+    text-align: right;
+}
+
+.order-total strong {
+    color: var(--color-gold);
+    font-size: 1.1rem;
+}

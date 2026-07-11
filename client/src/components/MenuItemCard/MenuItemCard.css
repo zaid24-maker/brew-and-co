@@ -1,0 +1,51 @@
+.menu-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.menu-card h2 {
+  font-size: 1.3rem;
+  color: var(--color-gold);
+}
+
+.menu-card .category {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.menu-card .price {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.add-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.add-btn:hover {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+}

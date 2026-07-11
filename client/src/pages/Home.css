@@ -1,0 +1,157 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.hero-tagline {
+  color: var(--color-secondary);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--color-gold);
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  max-width: 500px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-primary {
+  padding: 0.9rem 2.5rem;
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+  padding: 0.9rem 2.5rem;
+  background-color: transparent;
+  color: var(--color-gold);
+  border: 2px solid var(--color-gold);
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: var(--transition);
+  letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+  transform: translateY(-3px);
+}
+
+.hero-image {
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(212, 169, 106, 0.3));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.feature-card {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--color-card);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+  border-color: var(--color-gold);
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  color: var(--color-gold);
+}
+
+.feature-card p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.why-us {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+.why-us h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.why-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-card);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+.why-item:hover {
+  border-color: var(--color-gold);
+  transform: translateX(5px);
+}
