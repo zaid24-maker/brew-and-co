@@ -1,29 +1,33 @@
 import { useState, useEffect } from 'react'
 import MenuItemCard from '../components/MenuItemCard/MenuItemCard'
 
-  function Menu({ addToCart }) {
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+function Menu({ addToCart }) {
   const [menu, setMenu] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('ALL')
 
   useEffect(() => {
+   
     const url = selectedCategory === 'ALL'
-      ? 'http://localhost:5000/api/menu'
-      : `http://localhost:5000/api/menu?category=${selectedCategory}`
+      ? `${API_URL}/api/menu`
+      : `${API_URL}/api/menu?category=${selectedCategory}`
 
-fetch(url)
+    fetch(url)
       .then(response => response.json())
       .then(data => setMenu(data))
       .catch(error => console.error('Error fetching menu:', error))
   }, [selectedCategory])
   
-return (
+  return (
     <div className="menu-page">
       <div className="menu-header">
         <h1>Our Menu</h1>
         <p>Crafted with love, served with passion</p>
       </div>
 
-<div className="filter-buttons">
+      <div className="filter-buttons">
         {['ALL', 'Hot Drinks', 'Cold Drinks', 'Pastries', 'Snacks'].map(category => (
           <button
             key={category}
@@ -32,7 +36,7 @@ return (
           >
             {category}
           </button>  
-           ))}
+        ))}
       </div>
 
       <div className="menu-grid">
@@ -51,4 +55,4 @@ return (
   )
 }
 
-export default Menu 
+export default Menu

@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Cart.css'
 
+// 1. Add the API URL variable at the top
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 // 🧠 CONCEPT: Props coming down from App.jsx (lifted state)
 //    cart = array of items, removeFromCart & clearCart = functions from App.jsx
 function Cart({ cart, removeFromCart, clearCart }) {
@@ -21,7 +24,8 @@ function Cart({ cart, removeFromCart, clearCart }) {
         const token = localStorage.getItem('token')
 
         try {
-            const response = await fetch('http://localhost:5000/api/orders', {
+            // 2. Use the new API_URL variable here (notice the backticks!)
+            const response = await fetch(`${API_URL}/api/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

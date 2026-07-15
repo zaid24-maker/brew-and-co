@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import './Orders.css'
 
+// 1. Add the API URL variable at the top
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 // 🧠 CONCEPT: Fetching protected data from the backend
 //    This page calls GET /api/orders/myorders
 //    The backend's auth middleware checks the JWT to know WHICH user's orders to return
@@ -14,7 +17,9 @@ function Orders() {
 
         // 🧠 CONCEPT: Authorization header tells the server "this is ME"
         //    Without it, the server returns 401 Unauthorized
-        fetch('http://localhost:5000/api/orders/myorders', {
+        
+        // 2. Use the new API_URL variable here (notice the backticks!)
+        fetch(`${API_URL}/api/orders/myorders`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -10,10 +10,6 @@ function Login() {
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
-
-  // 🧠 CONCEPT: We pull login() from the context
-  //    login() does TWO things: saves token to localStorage + sets isLoggedIn = true
-  //    That second step is what makes the Navbar re-render immediately!
   const { login } = useAuth()
 
   const handleSubmit = async (e) => {
@@ -22,7 +18,8 @@ function Login() {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+          const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+          const response = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -35,7 +32,6 @@ function Login() {
         return
       }
 
-      // ✅ login() from context (not direct localStorage) — reactive!
       login(data.token)
       navigate('/')
 
