@@ -10,7 +10,6 @@ import Signup from './pages/Signup'
 import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import NotFound from './pages/NotFound'
-import './App.css'
 
 function App() {
   const [cart, setCart] = useState([])
