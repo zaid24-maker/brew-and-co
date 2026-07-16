@@ -1,57 +1,115 @@
 import { useState, useEffect } from 'react'
 import MenuItemCard from '../components/MenuItemCard/MenuItemCard'
+import './Menu.css'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const CATEGORIES = ['ALL', 'Hot Drinks', 'Cold Drinks', 'Pastries', 'Snacks']
+
+const CATEGORY_EMOJIS = {
+  ALL: '☕',
+  'Hot Drinks': '🔥',
+  'Cold Drinks': '🧊',
+  Pastries: '🥐',
+  Snacks: '🍪',
+}
 
 function Menu({ addToCart }) {
   const [menu, setMenu] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('ALL')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-   
-    const url = selectedCategory === 'ALL'
-      ? `${API_URL}/api/menu`
-      : `${API_URL}/api/menu?category=${selectedCategory}`
+    setLoading(true)
+    setError(null)
+
+    const url =
+      selectedCategory === 'ALL'
+        ? `${API_URL}/api/menu`
+        : `${API_URL}/api/menu?category=${selectedCategory}`
 
     fetch(url)
-      .then(response => response.json())
-      .then(data => setMenu(data))
-      .catch(error => console.error('Error fetching menu:', error))
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load menu')
+        return res.json()
+      })
+      .then((data) => {
+        setMenu(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        setError(err.message)
+        setLoading(false)
+      })
   }, [selectedCategory])
-  
+
   return (
-    <div className="menu-page">
-      <div className="menu-header">
+    <main className="menu-page">
+      {/* Header */}
+      <section className="menu-header">
+        <p className="menu-tagline">☕ Handcrafted with love</p>
         <h1>Our Menu</h1>
-        <p>Crafted with love, served with passion</p>
-      </div>
+        <p className="menu-subtitle">Crafted with care, served with passion</p>
+      </section>
 
-      <div className="filter-buttons">
-        {['ALL', 'Hot Drinks', 'Cold Drinks', 'Pastries', 'Snacks'].map(category => (
-          <button
-            key={category}
-            className={selectedCategory === category ? 'active' : ''}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>  
-        ))}
-      </div>
+      {/* Category Filters */}
+      <section className="filter-section" aria-label="Filter menu by category">
+        <div className="filter-buttons">
+          {CATEGORIES.map((category) => (
+            <button
+              key={category}
+              className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(category)}
+              aria-pressed={selectedCategory === category}
+            >
+              <span className="filter-emoji">{CATEGORY_EMOJIS[category]}</span>
+              {category}
+            </button>
+          ))}
+        </div>
+      </section>
 
-      <div className="menu-grid">
-        {menu.map(item => (
-          <MenuItemCard
-            key={item._id}
-            name={item.name}
-            price={item.price}
-            category={item.category}
-            item={item}
-            addToCart={addToCart}
-          />
-        ))}
-      </div>   
-    </div>
+      {/* Menu Grid */}
+      <section className="menu-content">
+        {loading && (
+          <div className="menu-loading" aria-live="polite">
+            <div className="loading-spinner"></div>
+            <p>Brewing your menu...</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="menu-error" role="alert">
+            <p>⚠️ {error}</p>
+            <button onClick={() => setSelectedCategory(selectedCategory)}>
+              Try Again
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && menu.length === 0 && (
+          <div className="menu-empty">
+            <p>☕ No items found in this category.</p>
+          </div>
+        )}
+
+        {!loading && !error && menu.length > 0 && (
+          <div className="menu-grid">
+            {menu.map((item) => (
+              <MenuItemCard
+                key={item._id}
+                name={item.name}
+                price={item.price}
+                category={item.category}
+                item={item}
+                addToCart={addToCart}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
   )
 }
 
