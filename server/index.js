@@ -20,7 +20,7 @@ app.get('/api/menu', async (req, res) => {
     try {
         const filter = {};
         if (req.query.category) {
-            filter.category = req.query.category;
+            filter.category = { $regex: new RegExp(`^${req.query.category}$`, 'i') };
         }
         const menu = await MenuItem.find(filter);
         res.json(menu);
@@ -180,13 +180,13 @@ app.get('/api/orders/myorders', auth, async (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-    console.log('Connected to MongoDB');
+    .then(() => {
+        console.log('Connected to MongoDB');
 
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    })
+    .catch((err) => {
+        console.error('MongoDB connection failed:', err);
     });
-})
-.catch((err) => {
-    console.error('MongoDB connection failed:', err);
-});
