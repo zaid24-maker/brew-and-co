@@ -21,7 +21,7 @@
     background: linear-gradient(135deg, var(--espresso) 0%, var(--coffee) 100%);
     color: var(--cream);
     text-align: center;
-    padding: 5rem 1.5rem 4rem;
+    padding: 2.5rem 1.5rem 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -35,24 +35,24 @@
 }
 
 .res-tagline {
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
     text-transform: uppercase;
     color: var(--caramel);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
 }
 
 .res-header h1 {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
     font-weight: 700;
-    margin: 0 0 1rem;
+    margin: 0 0 0.4rem;
 }
 
 .res-subtitle {
-    font-size: 1rem;
-    color: rgba(255, 248, 242, 0.75);
+    font-size: 0.82rem;
+    color: rgba(255, 248, 242, 0.6);
     margin: 0;
 }
 
