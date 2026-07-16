@@ -10,6 +10,7 @@ import Signup from './pages/Signup'
 import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import NotFound from './pages/NotFound'
+import Reservations from './pages/Reservations'
 
 function App() {
   const [cart, setCart] = useState([])
@@ -57,6 +58,8 @@ function App() {
               <Orders />
             </ProtectedRoute>
           } />
+
+          <Route path="/reservations" element={<Reservations />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

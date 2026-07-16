@@ -16,15 +16,15 @@ function Navbar({ cart }) {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-         <div className="navbar-logo">
-      <Link to="/">Brew & Co</Link>
-  </div>
-  <div className="navbar-cart">
-    <Link to="/cart">
-      🛒 {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
-    </Link>
-  </div>
-</div>
+        <div className="navbar-logo">
+          <Link to="/">Brew & Co</Link>
+        </div>
+        <div className="navbar-cart">
+          <Link to="/cart">
+            🛒 {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
+          </Link>
+        </div>
+      </div>
 
       <ul className="navbar-links">
         <li>
@@ -41,6 +41,14 @@ function Navbar({ cart }) {
             className={location.pathname === '/menu' ? 'active' : ''}
           >
             Menu
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/reservations"
+            className={location.pathname === '/reservations' ? 'active' : ''}
+          >
+            Reservations
           </Link>
         </li>
         {isLoggedIn ? (
