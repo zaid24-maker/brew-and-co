@@ -50,6 +50,35 @@ function Reservations() {
 
     const isFormValid = form.name && form.email && form.date && form.time
 
+    // ── Success Screen ──────────────────────────────────
+    if (status === 'success') {
+        return (
+            <main className="reservations-page">
+                <section className="res-header">
+                    <p className="res-tagline">📅 Reserve Your Spot</p>
+                    <h1>Book a Table</h1>
+                    <p className="res-subtitle">Join us for a perfect coffee experience</p>
+                </section>
+                <div className="res-success-screen">
+                    <div className="res-success-icon">✅</div>
+                    <h2>Reservation Confirmed!</h2>
+                    <p>Thank you, <strong>{form.name || 'Guest'}</strong>. We'll see you soon at Brew &amp; Co.!</p>
+                    <div className="res-success-details">
+                        <span>📅 {form.date}</span>
+                        <span>🕐 {form.time}</span>
+                        <span>👥 {form.guests} {Number(form.guests) === 1 ? 'Guest' : 'Guests'}</span>
+                    </div>
+                    <button
+                        className="res-submit-btn res-book-again-btn"
+                        onClick={() => setStatus(null)}
+                    >
+                        Book Another Table
+                    </button>
+                </div>
+            </main>
+        )
+    }
+
     return (
         <main className="reservations-page">
             {/* Header */}
@@ -86,11 +115,6 @@ function Reservations() {
                 <form className="res-form" onSubmit={handleSubmit} noValidate>
                     <h2>Make a Reservation</h2>
 
-                    {status === 'success' && (
-                        <div className="res-alert res-alert--success" role="alert">
-                            ✅ Reservation confirmed! We'll see you soon.
-                        </div>
-                    )}
                     {status === 'error' && (
                         <div className="res-alert res-alert--error" role="alert">
                             ⚠️ Something went wrong. Please try again.

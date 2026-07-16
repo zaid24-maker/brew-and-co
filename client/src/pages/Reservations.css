@@ -214,6 +214,86 @@
     border: 1px solid #fecaca;
 }
 
+/* ─── Success Screen ─────────────────────────────────── */
+.res-success-screen {
+    max-width: 520px;
+    margin: 4rem auto;
+    background: #fff;
+    border-radius: 24px;
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(111, 78, 55, 0.12);
+    animation: fadeIn 0.4s ease;
+}
+
+.res-success-icon {
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.4);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.res-success-screen h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--espresso);
+    margin: 0 0 0.75rem;
+}
+
+.res-success-screen>p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.res-success-details {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.res-success-details span {
+    background: var(--cream);
+    border: 1px solid #e0d0c5;
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    color: var(--coffee);
+    font-weight: 500;
+}
+
+.res-book-again-btn {
+    max-width: 260px;
+    margin: 0 auto;
+    display: block;
+}
+
 /* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 768px) {
     .res-body {
