@@ -18,8 +18,8 @@ function Login() {
     setLoading(true)
 
     try {
-          const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-          const response = await fetch(`${API_URL}/api/login`, {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const response = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -32,8 +32,9 @@ function Login() {
         return
       }
 
-      login(data.token)
-      navigate('/')
+      login(data.token, data.isAdmin)
+      navigate(data.isAdmin ? '/admin' : '/')
+
 
     } catch (err) {
       setError('Something went wrong. Please try again.')

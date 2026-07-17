@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import AdminRoute from './components/AdminRoute/AdminRoute'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import Login from './pages/Login'
@@ -11,6 +12,7 @@ import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import NotFound from './pages/NotFound'
 import Reservations from './pages/Reservations'
+import Admin from './pages/Admin'
 
 function App() {
   const [cart, setCart] = useState([])
@@ -60,6 +62,12 @@ function App() {
           } />
 
           <Route path="/reservations" element={<Reservations />} />
+
+          <Route path="/admin" element={
+            <AdminRoute>
+              <Admin />
+            </AdminRoute>
+          } />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

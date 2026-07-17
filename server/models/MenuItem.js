@@ -13,6 +13,14 @@ const menuItemSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ['Hot Drinks', 'Cold Drinks', 'Pastries', 'Snacks']
+    },
+    description: {
+        type: String,
+        default: ''
+    },
+    image: {
+        type: String,
+        default: ''
     }
 });
 

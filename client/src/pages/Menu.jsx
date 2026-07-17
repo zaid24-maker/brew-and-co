@@ -23,7 +23,6 @@ function Menu({ addToCart }) {
   useEffect(() => {
     setLoading(true)
     setError(null)
-
     const url =
       selectedCategory === 'ALL'
         ? `${API_URL}/api/menu`
@@ -46,14 +45,24 @@ function Menu({ addToCart }) {
 
   return (
     <main className="menu-page">
-      {/* Header */}
-      <section className="menu-header">
-        <p className="menu-tagline">☕ Handcrafted with love</p>
-        <h1>Our Menu</h1>
-        <p className="menu-subtitle">Crafted with care, served with passion</p>
+
+      {/* ── Hero ── */}
+      <section className="menu-hero">
+        {/* Floating particles */}
+        <div className="menu-particles">
+          {[...Array(10)].map((_, i) => (
+            <span key={i} className="menu-particle" />
+          ))}
+        </div>
+
+        <div className="menu-hero__content">
+          <p className="menu-tagline">☕ Handcrafted with love</p>
+          <h1>Our Menu</h1>
+          <p className="menu-subtitle">Crafted with care, served with passion</p>
+        </div>
       </section>
 
-      {/* Category Filters */}
+      {/* ── Category Filters ── */}
       <section className="filter-section" aria-label="Filter menu by category">
         <div className="filter-buttons">
           {CATEGORIES.map((category) => (
@@ -70,7 +79,7 @@ function Menu({ addToCart }) {
         </div>
       </section>
 
-      {/* Menu Grid */}
+      {/* ── Menu Grid ── */}
       <section className="menu-content">
         {loading && (
           <div className="menu-loading" aria-live="polite">
@@ -82,9 +91,7 @@ function Menu({ addToCart }) {
         {error && (
           <div className="menu-error" role="alert">
             <p>⚠️ {error}</p>
-            <button onClick={() => setSelectedCategory(selectedCategory)}>
-              Try Again
-            </button>
+            <button onClick={() => setSelectedCategory(selectedCategory)}>Try Again</button>
           </div>
         )}
 
