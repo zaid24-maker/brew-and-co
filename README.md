@@ -1,120 +1,103 @@
-# Brew & Co                   
+# ☕ Brew & Co.
 
-A full-stack coffee shop web app built with the MERN stack (MongoDB, Express, React, Node.js).
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-I built this project to learn web development from scratch — starting with zero React/Node knowledge and building everything step by step.
+A full-stack, premium coffee shop e-commerce application built with the **MERN** stack (MongoDB, Express, React, Node.js). Engineered with a focus on performance, responsive design, and robust security.
 
----
-
-## What it does
-
-- Browse a coffee menu with category filters (Hot Drinks, Cold Drinks, etc.)
-- Create an account and log in
-- Add items to a cart and place orders
-- View your order history
+**Live Demo:** [Brew & Co. on Vercel](https://brew-and-co-sable.vercel.app)  
+**Backend API:** [Hosted on Render](https://brew-and-co.onrender.com)
 
 ---
 
-## Tech Stack
+## ✨ Key Features
 
-**Frontend**
-- React (with Vite)
-- React Router for navigation
-- Plain CSS with CSS variables for theming
+- **Storefront & Menu:** Dynamic, filterable product catalog with instant cart updates and responsive animations.
+- **Role-Based Access Control (RBAC):** Secure partitioning between standard users and Administrators via JSON Web Tokens (JWT).
+- **Admin Dashboard:** Real-time metrics overview, live order status management, and complete CRUD operations for the digital menu.
+- **Optimized Performance:** Implemented React Code-Splitting (`React.lazy` & `Suspense`) to minimize bundle sizes and maximize load speeds.
+- **Robust Security:** Stateful password hashing using `bcryptjs` and strict, multi-origin CORS validation.
+- **Accessibility (A11y):** Built entirely with WCAG compliance in mind, featuring ARIA labels, semantic HTML, and screen-reader safe components.
+- **Table Reservations:** Multi-step reservation flow with custom success screens and instant feedback.
 
-**Backend**
-- Node.js + Express
-- MongoDB Atlas (cloud database)
-- Mongoose for database models
-- JWT for authentication
-- bcryptjs for password hashing
+## 🛠️ Technology Stack
 
----
+**Frontend:**
+- React (Vite)
+- React Router DOM (v6)
+- Vanilla CSS3 (Custom Design Tokens & CSS Variables)
+- Context API (Global State Management)
 
-## Project Structure
-
-```
-brew-and-co/
-├── client/          # React frontend
-│   └── src/
-│       ├── components/   # Navbar, Footer, MenuItemCard
-│       ├── pages/        # Home, Menu, Cart, Login, Signup, Orders
-│       ├── context/      # AuthContext
-│       └── styles/       # Global CSS and variables
-│
-└── server/          # Express backend
-    ├── models/      # User, MenuItem, Order schemas
-    ├── middleware/  # JWT auth middleware
-    └── index.js     # Main server file
-```
+**Backend:**
+- Node.js & Express.js
+- MongoDB & Mongoose
+- JSON Web Token (JWT)
+- bcryptjs
+- cors & dotenv
 
 ---
 
-## API Routes
+## 🚀 Local Development Setup
 
-| Method | Route | Description | Auth Required |
-|--------|-------|-------------|---------------|
-| GET | /api/menu | Get all menu items | No |
-| GET | /api/menu?category=Hot Drinks | Filter by category | No |
-| GET | /api/menu/:id | Get one item | No |
-| POST | /api/menu | Add menu item | Yes |
-| PUT | /api/menu/:id | Update menu item | Yes |
-| DELETE | /api/menu/:id | Delete menu item | Yes |
-| POST | /api/signup | Create account | No |
-| POST | /api/login | Login and get token | No |
-| POST | /api/orders | Place an order | Yes |
-| GET | /api/orders/myorders | Get my orders | Yes |
+To run this project locally, you will need Node.js and a MongoDB instance (or MongoDB Atlas URI).
 
----
-
-## Running Locally
-
-You'll need Node.js and a MongoDB Atlas account.
-
-**1. Clone the repo**
+### 1. Clone the repository
 ```bash
 git clone https://github.com/zaid24-maker/brew-and-co.git
 cd brew-and-co
 ```
 
-**2. Set up the backend**
+### 2. Setup the Server
 ```bash
 cd server
 npm install
 ```
-
-Create a `.env` file inside the `server` folder:
-```
+Create a `.env` file in the `/server` directory:
+```env
+PORT=5000
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=any_random_secret_string
+JWT_SECRET=your_jwt_secret_key
+CLIENT_URL=http://localhost:5173
 ```
-
-Start the server:
+Start the backend development server:
 ```bash
-npm start
-```
-
-**3. Set up the frontend**
-```bash
-cd ../client
-npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+### 3. Setup the Client
+Open a new terminal configuration in the project root:
+```bash
+cd client
+npm install
+```
+Create a `.env` file in the `/client` directory:
+```env
+VITE_API_URL=http://localhost:5000
+```
+Start the frontend development server:
+```bash
+npm run dev
+```
+
+### 4. Admin Seeding (Optional)
+To instantly create an Admin account for testing the `/admin` dashboard:
+```bash
+cd server
+node create-admin.js yourmail@example.com
+```
 
 ---
 
-## What I learned
+## 🎨 Design System
+The UI relies heavily on a curated set of design tokens designed to evoke a luxury coffee house atmosphere:
 
-- How REST APIs work and how to build one with Express
-- MongoDB document structure and Mongoose schemas
-- JWT authentication flow (signup → login → protected routes)
-- React components, props, state, and hooks (useState, useEffect)
-- React Router for client-side navigation
-- How the frontend and backend talk to each other (fetch, CORS)
-- Debugging real errors — DNS issues, auth failures, CORS, duplicate keys
+- **Espresso:** `#2e1a12`
+- **Coffee:** `#4a2c20`
+- **Caramel:** `#c19a6b`
+- **Cream:** `#fff8f2`
 
----
-
-Built by Zaid — learning MERN one step at a time.
+## 👨‍💻 Author
+**Zaid** - [GitHub Profile](https://github.com/zaid24-maker)
