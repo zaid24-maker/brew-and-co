@@ -1,9 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import AdminRoute from './components/AdminRoute/AdminRoute'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import Login from './pages/Login'
@@ -63,10 +62,11 @@ function App() {
 
           <Route path="/reservations" element={<Reservations />} />
 
+          {/* Admin — only accessible if isAdmin flag is in localStorage */}
           <Route path="/admin" element={
-            <AdminRoute>
-              <Admin />
-            </AdminRoute>
+            localStorage.getItem('isAdmin') === 'true'
+              ? <Admin />
+              : <Navigate to="/" replace />
           } />
 
           <Route path="*" element={<NotFound />} />
