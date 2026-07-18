@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from './context/AuthContext'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
@@ -15,6 +16,7 @@ import Admin from './pages/Admin'
 
 function App() {
   const [cart, setCart] = useState([])
+  const { isAdmin } = useAuth()
 
   const addToCart = (item) => {
     setCart(prev => {
@@ -62,9 +64,9 @@ function App() {
 
           <Route path="/reservations" element={<Reservations />} />
 
-          {/* Admin — only accessible if isAdmin flag is in localStorage */}
+          {/* Admin — protected by reactive isAdmin from AuthContext */}
           <Route path="/admin" element={
-            localStorage.getItem('isAdmin') === 'true'
+            isAdmin
               ? <Admin />
               : <Navigate to="/" replace />
           } />
