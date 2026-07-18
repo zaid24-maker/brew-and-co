@@ -11,7 +11,25 @@ const Order = require('./models/Order');
 const cors = require('cors');
 const app = express();
 app.use(express.json());
-app.use(cors());
+const ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    process.env.CLIENT_URL, // set this on Render to your Vercel URL
+].filter(Boolean); // removes undefined if CLIENT_URL not set
+
+app.use(cors({
+    origin: (origin, callback) => {
+        // allow requests with no origin (Postman, curl, server-to-server)
+        if (!origin) return callback(null, true);
+        if (ALLOWED_ORIGINS.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS blocked: ${origin}`));
+        }
+    },
+    credentials: true,
+}));
+
 
 app.get('/', (req, res) => {
     res.send('Coffee shop server is alive and well!');
