@@ -29,3 +29,9 @@ button {
   cursor: pointer;
   font-family: var(--font-body);
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
