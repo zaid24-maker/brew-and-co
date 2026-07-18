@@ -13,14 +13,14 @@ function Navbar({ cart }) {
   }
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Main navigation">
       <div className="navbar-left">
         <div className="navbar-logo">
           <Link to="/">Brew &amp; Co</Link>
         </div>
         <div className="navbar-cart">
-          <Link to="/cart">
-            🛒 {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
+          <Link to="/cart" aria-label={`Cart, ${cart.length} item${cart.length !== 1 ? 's' : ''}`}>
+            <span aria-hidden="true">🛒</span> {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
           </Link>
         </div>
       </div>
@@ -57,7 +57,7 @@ function Navbar({ cart }) {
               </li>
             )}
             <li>
-              <button onClick={handleLogout} className="logout-btn">
+              <button onClick={handleLogout} className="logout-btn" aria-label="Log out of your account">
                 Logout
               </button>
             </li>

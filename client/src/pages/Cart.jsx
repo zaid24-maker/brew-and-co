@@ -70,8 +70,8 @@ function Cart({ cart, removeFromCart, clearCart }) {
 
                 {/* Show success message even after cart clears */}
                 {orderStatus === 'success' && (
-                    <div className="order-success">
-                        <span>✅</span>
+                    <div className="order-success" role="status" aria-live="polite">
+                        <span aria-hidden="true">✅</span>
                         <div>
                             <strong>Order Placed!</strong>
                             <p>Check your <Link to="/orders">My Orders</Link> page to see it.</p>
@@ -90,7 +90,7 @@ function Cart({ cart, removeFromCart, clearCart }) {
             </div>
 
             {orderStatus === 'error' && (
-                <div className="order-error">
+                <div className="order-error" role="alert">
                     ❌ Something went wrong placing your order. Please try again.
                 </div>
             )}
@@ -106,11 +106,12 @@ function Cart({ cart, removeFromCart, clearCart }) {
                             <div className="cart-item-controls">
                                 <span className="cart-item-qty">× {item.quantity}</span>
                                 <span className="cart-item-price">
-                                   ₹{item.price * item.quantity}
+                                    ₹{item.price * item.quantity}
                                 </span>
                                 <button
                                     className="cart-remove-btn"
                                     onClick={() => removeFromCart(item._id)}
+                                    aria-label={`Remove ${item.name} from cart`}
                                 >
                                     Remove
                                 </button>
